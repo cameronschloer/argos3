@@ -18,6 +18,7 @@ set(ARGOS3_HEADERS_PLUGINS_SIMULATOR_ENTITIES
   magnet_equipped_entity.h
   omnidirectional_camera_equipped_entity.h
   perspective_camera_equipped_entity.h
+  polygon_entity.h
   proximity_sensor_equipped_entity.h
   quadrotor_entity.h
   rab_equipped_entity.h
@@ -48,6 +49,7 @@ set(ARGOS3_SOURCES_PLUGINS_SIMULATOR_ENTITIES
   magnet_equipped_entity.cpp
   omnidirectional_camera_equipped_entity.cpp
   perspective_camera_equipped_entity.cpp
+  polygon_entity.cpp
   proximity_sensor_equipped_entity.cpp
   quadrotor_entity.cpp
   rab_equipped_entity.cpp
