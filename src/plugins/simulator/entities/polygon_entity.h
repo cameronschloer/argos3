@@ -78,7 +78,7 @@ namespace argos {
       }
 
       inline const float * GetPoints() const {
-         return *m_points;
+         return *m_cPoints;
       }
 
       inline Real GetMass() const {
