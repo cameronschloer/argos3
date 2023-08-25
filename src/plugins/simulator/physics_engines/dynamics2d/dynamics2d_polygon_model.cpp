@@ -21,7 +21,13 @@ namespace argos {
       /* Start defining the vertices
          NOTE: points must be defined in a clockwise winding
       */
-      cpVect tVertices[] = c_entity.GetPoints();
+      
+      std::vector<std::tuple<float,float>> vecXYCoords = c_entity.GetPoints();
+      cpVect tVertices[vecXYCoords.size()];
+      for (int i = 0; i < vecXYCoords.size(); i++) {
+         tVertices[i] = cpv(std::get<0>(vecXYCoords[i]), std::get<1>(vecXYCoords[i]));
+      }
+      
       const CVector3& cPosition = GetEmbodiedEntity().GetOriginAnchor().Position;
       CRadians cXAngle, cYAngle, cZAngle;
       GetEmbodiedEntity().GetOriginAnchor().Orientation.ToEulerAngles(cZAngle, cYAngle, cXAngle);
@@ -37,7 +43,7 @@ namespace argos {
             cpSpaceAddBody(GetDynamics2DEngine().GetPhysicsSpace(),
                            cpBodyNew(GetMass(),
                                      cpMomentForPoly(GetMass(),
-                                                     std::sizeof(tVertices)/std::sizeof(tVertices[0]),
+                                                     vecXYCoords.size(),
                                                      tVertices,
                                                      cpvzero)));
          ptBody->p = cpv(cPosition.GetX(), cPosition.GetY());
@@ -46,7 +52,7 @@ namespace argos {
          cpShape* ptShape =
             cpSpaceAddShape(GetDynamics2DEngine().GetPhysicsSpace(),
                             cpPolyShapeNew(ptBody,
-                                           std::sizeof(tVertices)/std::sizeof(tVertices[0]),
+                                           vecXYCoords.size(),
                                            tVertices,
                                            cpvzero));
          ptShape->e = 0.0; // no elasticity
@@ -70,7 +76,7 @@ namespace argos {
          cpShape* ptShape =
             cpSpaceAddShape(GetDynamics2DEngine().GetPhysicsSpace(),
                             cpPolyShapeNew(ptBody,
-                                           std::sizeof(tVertices)/std::sizeof(tVertices[0]),
+                                           vecXYCoords.size(),
                                            tVertices,
                                            cpvzero));
          ptShape->e = 0.0; // No elasticity

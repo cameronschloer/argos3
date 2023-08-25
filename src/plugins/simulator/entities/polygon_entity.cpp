@@ -54,8 +54,16 @@ namespace argos {
       try {
          /* Init parent */
          CComposableEntity::Init(t_tree);
-         /* Parse XML to get the size */
-         GetNodeAttribute(t_tree, "points", m_cPoints);
+         /* Parse XML to get the points */
+         GetNodeAttribute(t_tree, "x_coords", m_pvecXCoords);
+         GetNodeAttribute(t_tree, "y_coords", m_pvecYCoords);
+         if (m_pvecXCoords.size() != m_pvecYCoords.size()){
+            throw CARGoSException();
+         } else {
+            for (int i = 0; i < m_pvecXCoords.size(); i++) {
+               m_pvecCombinedCoords.append(std::Tuple(m_pvecXCoords[i], m_pvecYCoords[i]));
+            }
+         }
          /* Parse XML to get the movable attribute */         
          bool bMovable;
          GetNodeAttribute(t_tree, "movable", bMovable);

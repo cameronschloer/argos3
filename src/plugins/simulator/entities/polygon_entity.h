@@ -14,6 +14,8 @@ namespace argos {
 #include <argos3/core/simulator/entity/embodied_entity.h>
 #include <argos3/core/simulator/entity/composable_entity.h>
 #include <argos3/plugins/simulator/entities/led_equipped_entity.h>
+#include <vector>
+#include <tuple>
 
 namespace argos {
 
@@ -77,8 +79,8 @@ namespace argos {
          return *m_pcLEDEquippedEntity;
       }
 
-      inline const float * GetPoints() const {
-         return *m_cPoints;
+      inline  std::vector<std::tuple<float,float>> GetPoints() const {
+         return m_pvecCombinedCoords;
       }
 
       inline Real GetMass() const {
@@ -97,7 +99,9 @@ namespace argos {
 
       CEmbodiedEntity*    m_pcEmbodiedEntity;
       CLEDEquippedEntity* m_pcLEDEquippedEntity;
-      float *             m_cPoints;
+      std::vector<float>  m_pvecXCoords;
+      std::vector<float>  m_pvecYCoords;
+      std::vector<std::tuple<float,float>> m_pvecCombinedCoords;
       Real                m_fMass;
       CLEDMedium*         m_pcLEDMedium;
 
