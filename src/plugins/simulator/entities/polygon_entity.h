@@ -31,7 +31,7 @@ namespace argos {
                  const CVector3& c_position,
                  const CQuaternion& c_orientation,
                  bool b_movable,
-                 const float c_points[][2],
+                 const std::vector<std::tuple<float,float>>& vec_combined_coords,
                  Real f_mass = 1.0f);
 
       virtual void Init(TConfigurationNode& t_tree);

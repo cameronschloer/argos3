@@ -29,7 +29,7 @@ namespace argos {
                           const CVector3& c_position,
                           const CQuaternion& c_orientation,
                           bool b_movable,
-                          const float c_points[][2],
+                          const std::vector<std::tuple<float,float>>& vec_combined_coords,
                           Real f_mass) :
       CComposableEntity(nullptr, str_id),
       m_pcEmbodiedEntity(
@@ -41,7 +41,7 @@ namespace argos {
       m_pcLEDEquippedEntity(
          new CLEDEquippedEntity(this,
                                 "leds_0")),
-      m_cPoints(c_points),
+      m_pvecCombinedCoords(vec_combined_coords),
       m_fMass(f_mass) {
       AddComponent(*m_pcEmbodiedEntity);
       AddComponent(*m_pcLEDEquippedEntity);
