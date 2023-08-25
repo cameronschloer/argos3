@@ -61,7 +61,7 @@ namespace argos {
             throw CARGoSException("x_coords and y_coords are not the same size");
          } else {
             for (int i = 0; i < m_pvecXCoords.size(); i++) {
-               m_pvecCombinedCoords.append(std::Tuple(m_pvecXCoords[i], m_pvecYCoords[i]));
+               m_pvecCombinedCoords.push_back(std::tuple<float,float>(m_pvecXCoords[i], m_pvecYCoords[i]));
             }
          }
          /* Parse XML to get the movable attribute */         
